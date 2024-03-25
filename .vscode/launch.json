@@ -7,15 +7,17 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/TestInitProject.Web/bin/Debug/net8.0/TestInitProject.Web.dll",
-            "args": [],
+            "args": ["--urls", "http://localhost:5999"],
             "cwd": "${workspaceFolder}/TestInitProject.Web",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
-                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                "uriFormat": "%s/swagger"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "SWAGGER_URL": "http://localhost:5999/swagger"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
