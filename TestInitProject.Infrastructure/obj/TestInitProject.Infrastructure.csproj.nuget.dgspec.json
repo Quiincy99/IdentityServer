@@ -1,0 +1,222 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\Sources\\TestInitProject\\TestInitProject.Infrastructure\\TestInitProject.Infrastructure.csproj": {}
+  },
+  "projects": {
+    "E:\\Sources\\TestInitProject\\TestInitProject.Application\\TestInitProject.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Sources\\TestInitProject\\TestInitProject.Application\\TestInitProject.Application.csproj",
+        "projectName": "TestInitProject.Application",
+        "projectPath": "E:\\Sources\\TestInitProject\\TestInitProject.Application\\TestInitProject.Application.csproj",
+        "packagesPath": "C:\\Users\\lam.duong\\.nuget\\packages\\",
+        "outputPath": "E:\\Sources\\TestInitProject\\TestInitProject.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lam.duong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "E:\\Sources\\TestInitProject\\TestInitProject.Domain\\TestInitProject.Domain.csproj": {
+                "projectPath": "E:\\Sources\\TestInitProject\\TestInitProject.Domain\\TestInitProject.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.103/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Sources\\TestInitProject\\TestInitProject.Domain\\TestInitProject.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Sources\\TestInitProject\\TestInitProject.Domain\\TestInitProject.Domain.csproj",
+        "projectName": "TestInitProject.Domain",
+        "projectPath": "E:\\Sources\\TestInitProject\\TestInitProject.Domain\\TestInitProject.Domain.csproj",
+        "packagesPath": "C:\\Users\\lam.duong\\.nuget\\packages\\",
+        "outputPath": "E:\\Sources\\TestInitProject\\TestInitProject.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lam.duong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.103/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Sources\\TestInitProject\\TestInitProject.Infrastructure\\TestInitProject.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Sources\\TestInitProject\\TestInitProject.Infrastructure\\TestInitProject.Infrastructure.csproj",
+        "projectName": "TestInitProject.Infrastructure",
+        "projectPath": "E:\\Sources\\TestInitProject\\TestInitProject.Infrastructure\\TestInitProject.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\lam.duong\\.nuget\\packages\\",
+        "outputPath": "E:\\Sources\\TestInitProject\\TestInitProject.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lam.duong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "E:\\Sources\\TestInitProject\\TestInitProject.Application\\TestInitProject.Application.csproj": {
+                "projectPath": "E:\\Sources\\TestInitProject\\TestInitProject.Application\\TestInitProject.Application.csproj"
+              },
+              "E:\\Sources\\TestInitProject\\TestInitProject.Domain\\TestInitProject.Domain.csproj": {
+                "projectPath": "E:\\Sources\\TestInitProject\\TestInitProject.Domain\\TestInitProject.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.103/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@TestInitProject_Web_HostAddress = http://localhost:5164
+
+GET {{TestInitProject_Web_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{TestInitProject_Web_HostAddress}}/weatherforecast/connectionstring
+Accept: application/json
+
+
+###
+
+POST {{TestInitProject_Web_HostAddress}}/Customer/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "Name": "Lam duong 12",
+    "Email": "test12@mailinator.com"
+}
+
+###
+
+GET {{TestInitProject_Web_HostAddress}}/Customer?pageNumber=1&pageSize=11
+Accept: application/json

@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: lam.duong
+      POSTGRES_PASSWORD: 1
+      POSTGRES_DB: TestInitProject
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  dotnet_app:
+    build:
+      context: ./TestInitProject.Web
+      dockerfile: Dockerfile
+    ports:
+      - "5164:5164"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

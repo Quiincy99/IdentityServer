@@ -1,0 +1,43 @@
+﻿using FluentValidation;
+using MediatR;
+using TestInitProject.Domain;
+
+namespace TestInitProject.Application;
+
+public class CreateCustomerCommand : IRequest<int>
+{
+    public string? Email { get; set; }
+    public string? Name { get; set; }
+}
+
+public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, int>
+{
+    private readonly IApplicationDbContext _context;
+    private readonly IValidator<CreateCustomerCommand> _validator;
+    public CreateCustomerCommandHandler(
+        IApplicationDbContext context,
+        IValidator<CreateCustomerCommand> validator)
+    {
+        _context = context;
+        _validator = validator;
+    }
+    public async Task<int> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+    {
+        var validateResult = await _validator.ValidateAsync(request);
+
+        if (!validateResult.IsValid)
+        {
+            Console.WriteLine("Validation failed: " + validateResult.ToString());
+
+            throw new ValidationException(validateResult.Errors);
+        }
+
+        var entity = new Customer(Guid.NewGuid()).Create(request.Email!, request.Name!);
+
+        entity.AddDomainEvent(new CustomerCreatedEvent(entity));
+
+        _context.Customers.Add(entity);
+        
+        return await _context.SaveChangesAsync(cancellationToken);
+    }
+}

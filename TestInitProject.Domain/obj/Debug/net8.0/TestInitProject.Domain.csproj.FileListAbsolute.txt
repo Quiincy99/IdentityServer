@@ -1,0 +1,12 @@
+E:\Sources\TestInitProject\TestInitProject.Domain\bin\Debug\net8.0\TestInitProject.Domain.deps.json
+E:\Sources\TestInitProject\TestInitProject.Domain\bin\Debug\net8.0\TestInitProject.Domain.dll
+E:\Sources\TestInitProject\TestInitProject.Domain\bin\Debug\net8.0\TestInitProject.Domain.pdb
+E:\Sources\TestInitProject\TestInitProject.Domain\obj\Debug\net8.0\TestInitProject.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sources\TestInitProject\TestInitProject.Domain\obj\Debug\net8.0\TestInitProject.Domain.AssemblyInfoInputs.cache
+E:\Sources\TestInitProject\TestInitProject.Domain\obj\Debug\net8.0\TestInitProject.Domain.AssemblyInfo.cs
+E:\Sources\TestInitProject\TestInitProject.Domain\obj\Debug\net8.0\TestInitProject.Domain.csproj.CoreCompileInputs.cache
+E:\Sources\TestInitProject\TestInitProject.Domain\obj\Debug\net8.0\TestInitProject.Domain.dll
+E:\Sources\TestInitProject\TestInitProject.Domain\obj\Debug\net8.0\refint\TestInitProject.Domain.dll
+E:\Sources\TestInitProject\TestInitProject.Domain\obj\Debug\net8.0\TestInitProject.Domain.pdb
+E:\Sources\TestInitProject\TestInitProject.Domain\obj\Debug\net8.0\ref\TestInitProject.Domain.dll
+E:\Sources\TestInitProject\TestInitProject.Domain\obj\Debug\net8.0\TestInitProject.Domain.csproj.AssemblyReference.cache
