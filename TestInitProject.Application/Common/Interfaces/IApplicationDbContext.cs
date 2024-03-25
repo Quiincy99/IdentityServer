@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TestInitProject.Domain;
+using TestInitProject.Domain.Customers;
 
-namespace TestInitProject.Application;
+namespace TestInitProject.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {

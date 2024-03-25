@@ -1,7 +1,9 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
+using TestInitProject.Application.Common.Interfaces;
 using TestInitProject.Application.Common.Mapping;
+using TestInitProject.Application.Common.Models;
 
 namespace TestInitProject.Application.Customers.Queries.GetCustomersWithPagination;
 

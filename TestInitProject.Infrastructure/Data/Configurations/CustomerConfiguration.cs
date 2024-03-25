@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TestInitProject.Domain;
+using TestInitProject.Domain.Customers;
 
-namespace TestInitProject.Infrastructure;
+namespace TestInitProject.Infrastructure.Data.Configurations;
 
 public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 {

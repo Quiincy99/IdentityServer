@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
+namespace TestInitProject.Application.Common.Models;
+
 public class PaginatedList<T>
 {
     public IReadOnlyCollection<T> Items { get; }

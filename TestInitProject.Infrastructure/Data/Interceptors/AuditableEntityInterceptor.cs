@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using TestInitProject.Application;
+using TestInitProject.Application.Common.Interfaces;
 using TestInitProject.Domain.Common;
 
-namespace TestInitProject.Infrastructure;
+namespace TestInitProject.Infrastructure.Data.Interceptors;
 
 public class AuditableEntityInterceptor : SaveChangesInterceptor
 {

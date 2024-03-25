@@ -1,4 +1,4 @@
-﻿using TestInitProject.Application;
+﻿using TestInitProject.Application.Common.Interfaces;
 
 namespace TestInitProject.Web;
 

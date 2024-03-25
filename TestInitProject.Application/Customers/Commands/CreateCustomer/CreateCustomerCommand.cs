@@ -1,8 +1,10 @@
 ﻿using FluentValidation;
 using MediatR;
-using TestInitProject.Domain;
+using TestInitProject.Application.Common.Interfaces;
+using TestInitProject.Domain.Customers;
+using TestInitProject.Domain.Events;
 
-namespace TestInitProject.Application;
+namespace TestInitProject.Application.Customers.Commands.CreateCustomer;
 
 public class CreateCustomerCommand : IRequest<int>
 {

@@ -1,6 +1,6 @@
 ﻿using TestInitProject.Domain.Common;
 
-namespace TestInitProject.Domain;
+namespace TestInitProject.Domain.Customers;
 
 public class Customer : BaseAuditableEntity<Guid>
 {

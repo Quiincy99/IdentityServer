@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -12,11 +11,6 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Customers\Commands\CreateCustomer\" />
-    <Folder Include="Customers\Queries\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TestInitProject.Domain\TestInitProject.Domain.csproj" />
   </ItemGroup>
-
 </Project>

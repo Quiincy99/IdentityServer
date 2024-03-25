@@ -2,10 +2,10 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TestInitProject.Application;
-using TestInitProject.Domain;
+using TestInitProject.Application.Common.Interfaces;
+using TestInitProject.Domain.Customers;
 
-namespace TestInitProject.Infrastructure;
+namespace TestInitProject.Infrastructure.Data;
 
 public class ApplicationDbContext : DbContext, IApplicationDbContext
 {

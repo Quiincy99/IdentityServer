@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using TestInitProject.Domain;
+using TestInitProject.Domain.Events;
 
-namespace TestInitProject.Application;
+namespace TestInitProject.Application.Customers.EventHandlers;
 
 public class CustomerCreatedEventHandler : INotificationHandler<CustomerCreatedEvent>
 {

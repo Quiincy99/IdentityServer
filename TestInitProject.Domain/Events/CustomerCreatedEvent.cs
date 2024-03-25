@@ -1,6 +1,7 @@
 ﻿using TestInitProject.Domain.Common;
+using TestInitProject.Domain.Customers;
 
-namespace TestInitProject.Domain;
+namespace TestInitProject.Domain.Events;
 
 public class CustomerCreatedEvent : BaseEvent
 {

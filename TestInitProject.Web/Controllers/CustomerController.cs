@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TestInitProject.Application;
+using TestInitProject.Application.Customers.Commands.CreateCustomer;
 using TestInitProject.Application.Customers.Queries.GetCustomersWithPagination;
 
 [ApiController]

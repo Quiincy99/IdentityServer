@@ -1,5 +1,8 @@
 using AutoMapper;
 using TestInitProject.Domain;
+using TestInitProject.Domain.Customers;
+
+namespace TestInitProject.Application.Customers.Queries.GetCustomersWithPagination;
 
 public class CustomerDto
 {

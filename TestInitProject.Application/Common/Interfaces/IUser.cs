@@ -1,4 +1,4 @@
-﻿namespace TestInitProject.Application;
+﻿namespace TestInitProject.Application.Common.Interfaces;
 
 public interface IUser
 {

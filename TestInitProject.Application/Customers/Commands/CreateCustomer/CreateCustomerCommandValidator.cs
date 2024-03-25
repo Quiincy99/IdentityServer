@@ -1,7 +1,8 @@
 ﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using TestInitProject.Application.Common.Interfaces;
 
-namespace TestInitProject.Application;
+namespace TestInitProject.Application.Customers.Commands.CreateCustomer;
 
 public class CreateCustomerCommandValidator : AbstractValidator<CreateCustomerCommand>
 {
