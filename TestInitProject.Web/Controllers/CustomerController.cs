@@ -16,7 +16,7 @@ public class CustomerController : ControllerBase
     [HttpGet("/{id}")]
     public IActionResult GetCustomerById(Guid id)
     {
-        return Ok();
+        return Ok(id);
     }
 
     [HttpPost("")]
