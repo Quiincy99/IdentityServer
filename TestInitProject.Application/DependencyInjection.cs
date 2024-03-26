@@ -1,6 +1,8 @@
 using System.Reflection;
 using FluentValidation;
+using MediatR;
 using TestInitProject.Application;
+using TestInitProject.Application.Common.Behaviours;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +16,7 @@ public static class DependencyInjection
 
         services.AddMediatR(cfg => {
             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         });
 
         return services;

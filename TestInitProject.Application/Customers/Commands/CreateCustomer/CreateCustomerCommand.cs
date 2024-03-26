@@ -25,15 +25,6 @@ public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerComman
     }
     public async Task<int> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
     {
-        var validateResult = await _validator.ValidateAsync(request);
-
-        if (!validateResult.IsValid)
-        {
-            Console.WriteLine("Validation failed: " + validateResult.ToString());
-
-            throw new ValidationException(validateResult.Errors);
-        }
-
         var entity = new Customer(Guid.NewGuid()).Create(request.Email!, request.Name!);
 
         entity.AddDomainEvent(new CustomerCreatedEvent(entity));
