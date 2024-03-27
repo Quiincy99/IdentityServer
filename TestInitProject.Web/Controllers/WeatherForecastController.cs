@@ -34,6 +34,7 @@ public class WeatherForecastController : ControllerBase
     public IActionResult GetConnectionString()
     {
         Console.WriteLine("I'm in here");
+        // throw new Exception("Something went wrong");
         return Ok(_configuration.GetConnectionString("DefaultConnection"));
     }
 }

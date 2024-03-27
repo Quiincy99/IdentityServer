@@ -7,7 +7,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/TestInitProject.Web/bin/Debug/net8.0/TestInitProject.Web.dll",
-            "args": ["--urls", "http://localhost:5999"],
+            "args": ["--urls", "http://localhost:5164"],
             "cwd": "${workspaceFolder}/TestInitProject.Web",
             "stopAtEntry": false,
             "serverReadyAction": {
@@ -17,7 +17,7 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "SWAGGER_URL": "http://localhost:5999/swagger"
+                "SWAGGER_URL": "http://localhost:5164/swagger"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
