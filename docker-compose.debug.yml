@@ -3,6 +3,18 @@
 version: '3.4'
 
 services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: lam.duong
+      POSTGRES_PASSWORD: 1
+      POSTGRES_DB: TestInitProject
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_debug_data:/var/lib/postgresql/data
+
   testinitprojectweb:
     image: testinitprojectweb
     build:
@@ -14,5 +26,9 @@ services:
       - 5164:5164
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=TestInitProject;Username=lam.duong;Password=1;
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
+
+volumes:
+  postgres_debug_data:

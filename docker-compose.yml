@@ -15,12 +15,14 @@ services:
 
   dotnet_app:
     build:
-      context: ./TestInitProject.Web
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: TestInitProject.Web/Dockerfile
     ports:
       - "5164:5164"
     depends_on:
       - postgres
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=TestInitProject;Username=lam.duong;Password=1;
 
 volumes:
   postgres_data:

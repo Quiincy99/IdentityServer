@@ -1,4 +1,3 @@
-using TestInitProject.Infrastructure;
 using TestInitProject.Web;
 
 var builder = WebApplication.CreateBuilder(args);
