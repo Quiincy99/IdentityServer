@@ -16,8 +16,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "Name": "Lam duong 12",
-    "Email": "test12@mailinator.com"
+    "Name": "Lam duong 13",
+    "Email": "test13@mailinator.com"
 }
 
 ###

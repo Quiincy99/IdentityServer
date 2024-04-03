@@ -15,10 +15,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     app.UseDeveloperExceptionPage();
 }
-else
-{
-    app.UseExceptionHandler("/error");
-}
+
+app.UseExceptionHandler("/error");
 
 app.UseHttpsRedirection();
 

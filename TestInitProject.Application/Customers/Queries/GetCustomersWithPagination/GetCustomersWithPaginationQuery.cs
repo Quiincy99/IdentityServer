@@ -15,16 +15,17 @@ public record GetCustomersWithPaginationQuery : IRequest<PaginatedList<CustomerD
 
 public class GetCustomersWithPaginationQueryHandler : IRequestHandler<GetCustomersWithPaginationQuery, PaginatedList<CustomerDto>>
 {
-    private readonly IApplicationDbContext _context;
+    private readonly ICustomerRepository _customerRepository;
     private readonly IMapper _mapper;
-    public GetCustomersWithPaginationQueryHandler(IApplicationDbContext context, IMapper mapper)
+    public GetCustomersWithPaginationQueryHandler(ICustomerRepository customerRepository, IMapper mapper)
     {
-        _context = context;
         _mapper = mapper;
+        _customerRepository = customerRepository;
     }
     public async Task<PaginatedList<CustomerDto>> Handle(GetCustomersWithPaginationQuery request, CancellationToken cancellationToken)
     {
-        return await _context.Customers
+        return await _customerRepository
+            .AsQueryable()
             .OrderBy(x => x.Name)
             .ProjectTo<CustomerDto>(_mapper.ConfigurationProvider)
             .PaginatedListAsync(request.PageNumber, request.PageSize);

@@ -7,7 +7,7 @@ using TestInitProject.Domain.Customers;
 
 namespace TestInitProject.Infrastructure.Data;
 
-public class ApplicationDbContext : DbContext, IApplicationDbContext
+internal class ApplicationDbContext : DbContext
 {
     private readonly IConfiguration _configuration;
     private readonly IServiceProvider _serviceProvider;

@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-using MediatR;
-using TestInitProject.Application.Common.Interfaces;
+﻿using MediatR;
 using TestInitProject.Domain.Customers;
 using TestInitProject.Domain.Events;
 
@@ -14,23 +12,26 @@ public class CreateCustomerCommand : IRequest<int>
 
 public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, int>
 {
-    private readonly IApplicationDbContext _context;
-    private readonly IValidator<CreateCustomerCommand> _validator;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly ICustomerRepository _customerRepository;
     public CreateCustomerCommandHandler(
-        IApplicationDbContext context,
-        IValidator<CreateCustomerCommand> validator)
+        IUnitOfWork unitOfWork,
+        ICustomerRepository customerRepository)
     {
-        _context = context;
-        _validator = validator;
+        _unitOfWork = unitOfWork;
+        _customerRepository = customerRepository;
     }
+    
     public async Task<int> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
     {
         var entity = new Customer(Guid.NewGuid()).Create(request.Email!, request.Name!);
 
         entity.AddDomainEvent(new CustomerCreatedEvent(entity));
 
-        _context.Customers.Add(entity);
+        _customerRepository.Add(entity);
         
-        return await _context.SaveChangesAsync(cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return 1;
     }
 }

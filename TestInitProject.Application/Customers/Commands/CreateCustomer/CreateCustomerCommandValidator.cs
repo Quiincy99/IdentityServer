@@ -6,11 +6,10 @@ namespace TestInitProject.Application.Customers.Commands.CreateCustomer;
 
 public class CreateCustomerCommandValidator : AbstractValidator<CreateCustomerCommand>
 {
-    private readonly IApplicationDbContext _context;
-
-    public CreateCustomerCommandValidator(IApplicationDbContext context)
+    private readonly ICustomerRepository _customerRepository;
+    public CreateCustomerCommandValidator(ICustomerRepository customerRepository)
     {
-        _context = context;
+        _customerRepository = customerRepository;
 
         RuleFor(v => v.Email)
             .NotEmpty()
@@ -26,7 +25,6 @@ public class CreateCustomerCommandValidator : AbstractValidator<CreateCustomerCo
 
     public async Task<bool> BeUniqueEmail(string email, CancellationToken cancellationToken)
     {
-        return !await _context.Customers
-            .AnyAsync(c => c.Email.ToLower() == email.ToLower());
+        return await _customerRepository.CheckUniqueEmailAsync(email);
     }
 }

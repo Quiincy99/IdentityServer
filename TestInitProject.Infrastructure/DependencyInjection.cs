@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
+using TestInitProject.Application;
 using TestInitProject.Application.Common.Interfaces;
+using TestInitProject.Infrastructure;
 using TestInitProject.Infrastructure.Data;
 using TestInitProject.Infrastructure.Data.Interceptors;
 
@@ -17,7 +19,10 @@ public static class DependencyInjection
 
         services.AddDbContext<ApplicationDbContext>();
 
-        services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+        // services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
 
         services.AddSingleton(TimeProvider.System);
 
