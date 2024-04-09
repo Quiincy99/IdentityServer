@@ -2,8 +2,7 @@
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TestInitProject.Application.Common.Interfaces;
-using TestInitProject.Domain.Customers;
+using TestInitProject.Domain.Entities;
 
 namespace TestInitProject.Infrastructure.Data;
 

@@ -21,6 +21,17 @@ Content-Type: application/json
 }
 
 ###
-
-GET {{TestInitProject_Web_HostAddress}}/Customer?pageNumber=1&pageSize=11
+GET {{TestInitProject_Web_HostAddress}}/Customer?pageNumber=1&pageSize=10
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNjYzZmExMi02YWNlLTQ1N2MtOWEzYy05ZDE2Nzg5NGMyY2UiLCJlbWFpbCI6InRlc3QxM0BtYWlsaW5hdG9yLmNvbSIsImV4cCI6MTcxMjU2NjQ5NSwiaXNzIjoiTGFtRHVvbmciLCJhdWQiOiJnYSJ9.oWz_w1_l0CnyiTrMv_gKHaYk08yDMGL6J04vUum61d8
+
+
+###
+POST {{TestInitProject_Web_HostAddress}}/Customer/Login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "Email": "test13@mailinator.com"
+}
+

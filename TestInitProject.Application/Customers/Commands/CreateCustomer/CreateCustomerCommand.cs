@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using TestInitProject.Domain.Customers;
+using TestInitProject.Domain.Entities;
 using TestInitProject.Domain.Events;
 
 namespace TestInitProject.Application.Customers.Commands.CreateCustomer;

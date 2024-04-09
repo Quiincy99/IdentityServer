@@ -1,5 +1,5 @@
 ﻿using TestInitProject.Domain.Common;
-using TestInitProject.Domain.Customers;
+using TestInitProject.Domain.Entities;
 
 namespace TestInitProject.Domain.Events;
 

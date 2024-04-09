@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TestInitProject.Infrastructure.Data;
@@ -11,9 +12,11 @@ using TestInitProject.Infrastructure.Data;
 namespace TestInitProject.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240409101633_Add role, permission table")]
+    partial class Addrolepermissiontable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,21 @@ namespace TestInitProject.Infrastructure.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("PermissionRole", b =>
+                {
+                    b.Property<int>("PermissionsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RoleValue")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PermissionsId", "RoleValue");
+
+                    b.HasIndex("RoleValue");
+
+                    b.ToTable("PermissionRole");
+                });
 
             modelBuilder.Entity("TestInitProject.Domain.Entities.Customer", b =>
                 {
@@ -126,8 +144,6 @@ namespace TestInitProject.Infrastructure.Data.Migrations
 
                     b.HasKey("RoleId", "PermissionId");
 
-                    b.HasIndex("PermissionId");
-
                     b.ToTable("RolePermission", (string)null);
 
                     b.HasData(
@@ -143,6 +159,21 @@ namespace TestInitProject.Infrastructure.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PermissionRole", b =>
+                {
+                    b.HasOne("TestInitProject.Domain.Entities.Permission", null)
+                        .WithMany()
+                        .HasForeignKey("PermissionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TestInitProject.Domain.Entities.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RoleValue")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("TestInitProject.Domain.Entities.Customer", b =>
                 {
                     b.HasOne("TestInitProject.Domain.Entities.Role", "Role")
@@ -152,21 +183,6 @@ namespace TestInitProject.Infrastructure.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("TestInitProject.Domain.RolePermission", b =>
-                {
-                    b.HasOne("TestInitProject.Domain.Entities.Permission", null)
-                        .WithMany()
-                        .HasForeignKey("PermissionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TestInitProject.Domain.Entities.Role", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("TestInitProject.Domain.Entities.Role", b =>

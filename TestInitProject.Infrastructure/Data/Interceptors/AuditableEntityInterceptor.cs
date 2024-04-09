@@ -1,17 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using TestInitProject.Application.Common.Interfaces;
+using TestInitProject.Application.Common.Interfaces.Auth;
 using TestInitProject.Domain.Common;
 
 namespace TestInitProject.Infrastructure.Data.Interceptors;
 
 public class AuditableEntityInterceptor : SaveChangesInterceptor
 {
-    private readonly IUser _user;
+    private readonly IUserContext _user;
     private readonly TimeProvider _timeProvider;
 
     public AuditableEntityInterceptor(
-        IUser user,
+        IUserContext user,
         TimeProvider timeProvider)
     {
         _user = user;
@@ -41,7 +41,7 @@ public class AuditableEntityInterceptor : SaveChangesInterceptor
             if (entry.State is EntityState.Added or EntityState.Modified)
             {
                 var utcNow = _timeProvider.GetUtcNow();
-                var userId = Guid.TryParse(_user.Id, out var id) ? id : Guid.Empty;
+                Guid userId =  _user.Id ?? Guid.Empty;
                 if (entry.State is EntityState.Added)
                 {
                     entry.Entity.CreatedBy = userId;

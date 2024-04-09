@@ -2,7 +2,6 @@
 using Moq;
 using TestInitProject.Application.Common.Interfaces;
 using TestInitProject.Application.Customers.Commands.CreateCustomer;
-using TestInitProject.Domain.Customers;
 
 namespace Application.UnitTests;
 

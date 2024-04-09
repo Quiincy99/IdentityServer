@@ -1,9 +1,10 @@
 ﻿using System.Security.Claims;
 using TestInitProject.Application.Common.Interfaces;
+using TestInitProject.Application.Common.Interfaces.Auth;
 
 namespace TestInitProject.Web;
 
-public class CurrentUser : IUser
+public class CurrentUser : IUserContext
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
     public CurrentUser(IHttpContextAccessor httpContextAccessor)
@@ -11,5 +12,7 @@ public class CurrentUser : IUser
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public string? Id => _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    public Guid? Id => Guid.TryParse(_httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value, out Guid id) ? id : null;
+
+    public bool isAnonymous => this.Id is null;
 }

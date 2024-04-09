@@ -1,5 +1,7 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TestInitProject.Application;
 using TestInitProject.Application.Customers.Commands.CreateCustomer;
 using TestInitProject.Application.Customers.Queries.GetCustomersWithPagination;
 
@@ -28,11 +30,20 @@ public class CustomerController : ControllerBase
     }
 
     [HttpGet("")]
+    [Authorize]
     public async Task<IActionResult> GetCustomers([FromQuery] int pageNumber, [FromQuery] int pageSize)
     {
         return Ok(await _mediator.Send(new GetCustomersWithPaginationQuery {
             PageNumber = pageNumber,
             PageSize = pageSize
         }));
+    }
+
+    [HttpPost("Login")]
+    public async Task<IActionResult> LoginMember([FromBody] LoginCommand command)
+    {
+        string token = await _mediator.Send(command);
+
+        return Ok(token);
     }
 }

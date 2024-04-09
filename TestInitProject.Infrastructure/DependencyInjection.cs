@@ -24,6 +24,8 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<ICustomerRepository, CustomerRepository>();
 
+        services.AddScoped<IJwtProvider, JwtProvider>();
+
         services.AddSingleton(TimeProvider.System);
 
         return services;

@@ -1,6 +1,5 @@
 using AutoMapper;
-using TestInitProject.Domain;
-using TestInitProject.Domain.Customers;
+using TestInitProject.Domain.Entities;
 
 namespace TestInitProject.Application.Customers.Queries.GetCustomersWithPagination;
 
