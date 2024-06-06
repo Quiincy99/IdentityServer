@@ -6,8 +6,8 @@ namespace TestInitProject.Application.Customers.Commands.CreateCustomer;
 
 public class CreateCustomerCommand : IRequest<int>
 {
-    public string? Email { get; set; }
-    public string? Name { get; set; }
+    public string Email { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
 }
 
 public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, int>

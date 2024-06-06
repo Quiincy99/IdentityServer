@@ -10,16 +10,15 @@ public class Customer : BaseAuditableEntity<Guid>
 
     public string Email { get; private set; } = string.Empty;
     public string Name { get; private set; } = string.Empty;
-
-    public Role Role { get; private set; } = Role.Registered;
+    public Role Role { get; private set; } = null!;
     public int RoleId { get; private set; } = Role.Registered.Value;
 
-    public Customer Create(string email, string name, Role? role = null)
+    public Customer Create(string email, string name)
     {
         this.Email = email;
         this.Name = name;
-        this.Role = role is null ? Role.Registered : role;
-        this.RoleId = role is null ? Role.Registered.Value : role.Value;
+
+        this.RoleId = Role.Registered.Value;
 
         return this;
     }

@@ -24,9 +24,11 @@ services:
         - configuration=Debug
     ports:
       - 5164:5164
+    depends_on:
+        - postgres
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=TestInitProject;Username=lam.duong;Password=1;
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5431;Database=TestInitProject;Username=lam.duong;Password=1;
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
 

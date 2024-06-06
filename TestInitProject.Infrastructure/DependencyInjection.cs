@@ -26,6 +26,8 @@ public static class DependencyInjection
 
         services.AddScoped<IJwtProvider, JwtProvider>();
 
+        services.AddScoped<IPermissionService, PermissionService>();
+
         services.AddSingleton(TimeProvider.System);
 
         return services;

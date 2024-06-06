@@ -2,6 +2,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestInitProject.Application.WeatherForecasts.Queries.GetWeatherForecasts;
+using TestInitProject.Domain.Enums;
+using TestInitProject.Infrastructure.Authentication;
 
 
 [ApiController]
@@ -30,7 +32,6 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet("connectionstring")]
-    [AllowAnonymous]
     public IActionResult GetConnectionString()
     {
         Console.WriteLine("I'm in here");

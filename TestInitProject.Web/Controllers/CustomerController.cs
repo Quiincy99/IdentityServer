@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using TestInitProject.Application;
 using TestInitProject.Application.Customers.Commands.CreateCustomer;
 using TestInitProject.Application.Customers.Queries.GetCustomersWithPagination;
+using TestInitProject.Domain.Enums;
+using TestInitProject.Infrastructure.Authentication;
 
 [ApiController]
 [Route("[controller]")]
@@ -30,7 +32,7 @@ public class CustomerController : ControllerBase
     }
 
     [HttpGet("")]
-    [Authorize]
+    [HasPermission(Permissions.ReadCustomer)]
     public async Task<IActionResult> GetCustomers([FromQuery] int pageNumber, [FromQuery] int pageSize)
     {
         return Ok(await _mediator.Send(new GetCustomersWithPaginationQuery {

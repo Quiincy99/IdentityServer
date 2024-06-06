@@ -3,5 +3,5 @@
 public enum Permissions
 {
     ReadCustomer = 1,
-    CreateCustomer = 2,
+    CreateCustomer = 2
 }
