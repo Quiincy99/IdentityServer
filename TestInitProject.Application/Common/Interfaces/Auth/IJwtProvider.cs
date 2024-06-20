@@ -5,5 +5,5 @@ namespace TestInitProject.Application;
 
 public interface IJwtProvider
 {
-    string Generate(Customer customer);
+    Task<string> GenerateAsync(Customer customer);
 }

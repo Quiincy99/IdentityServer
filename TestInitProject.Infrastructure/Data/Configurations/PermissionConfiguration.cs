@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TestInitProject.Domain;
 using TestInitProject.Domain.Entities;
 
 namespace TestInitProject.Infrastructure;

@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
+using TestInitProject.Infrastructure.Authentication;
 
 namespace TestInitProject.Infrastructure;
 
@@ -13,27 +14,34 @@ public class PermissionAuthorizationHandler
     {
         _serviceScopeFactory = serviceScopeFactory;
     }
-    protected override async Task HandleRequirementAsync(
+    protected override Task HandleRequirementAsync(
         AuthorizationHandlerContext context, 
         PermissionRequirement requirement)
     {
-        string? customerId = context.User.Claims.FirstOrDefault(x => x.Type is ClaimTypes.NameIdentifier)?.Value;
+        // string? customerId = context.User.Claims.FirstOrDefault(x => x.Type is ClaimTypes.NameIdentifier)?.Value;
     
-        if (!Guid.TryParse(customerId, out Guid parsedId))
-        {
-            return;
-        }
+        // if (!Guid.TryParse(customerId, out Guid parsedId))
+        // {
+        //     return;
+        // } 
 
-        using IServiceScope scope = _serviceScopeFactory.CreateScope();
+        // using IServiceScope scope = _serviceScopeFactory.CreateScope();
 
-        IPermissionService permissionService = scope.ServiceProvider.GetRequiredService<IPermissionService>();
+        // IPermissionService permissionService = scope.ServiceProvider.GetRequiredService<IPermissionService>();
 
-        HashSet<string> permissions = await permissionService
-            .GetPermissionAsync(parsedId);
+        // HashSet<string> permissions = await permissionService
+        //     .GetPermissionAsync(parsedId);
+
+        HashSet<string> permissions = context.User.Claims
+            .Where(x => x.Type == CustomClaims.Permissions)
+            .Select(x => x.Value)
+            .ToHashSet();
 
         if (permissions.Contains(requirement.Permission))
         {
             context.Succeed(requirement);
         }
+
+        return Task.CompletedTask;
     }
 }

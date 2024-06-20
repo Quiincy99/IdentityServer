@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -16,5 +15,4 @@
     <ProjectReference Include="..\TestInitProject.Domain\TestInitProject.Domain.csproj" />
     <ProjectReference Include="..\TestInitProject.Application\TestInitProject.Application.csproj" />
   </ItemGroup>
-
 </Project>

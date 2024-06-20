@@ -5,22 +5,33 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using TestInitProject.Application;
 using TestInitProject.Domain.Entities;
+using TestInitProject.Infrastructure.Authentication;
 
 namespace TestInitProject.Infrastructure;
 
 internal sealed class JwtProvider : IJwtProvider
 {
     private readonly JwtOptions _jwtOptions;
-    public JwtProvider(IOptions<JwtOptions> options)
+    private readonly IPermissionService _permissionService;
+    public JwtProvider(IOptions<JwtOptions> options, IPermissionService permissionService)
     {
         _jwtOptions = options.Value;
+        _permissionService = permissionService;
     }
-    public string Generate(Customer customer)
+    public async Task<string> GenerateAsync(Customer customer)
     {
-        var claims = new Claim[] {
+        var claims = new List<Claim> {
             new Claim(JwtRegisteredClaimNames.Sub, customer.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.Email, customer.Email)
         };
+
+        var permissions = await _permissionService
+            .GetPermissionAsync(customer.Id);
+
+        foreach (var permission in permissions)
+        {
+            claims.Add(new Claim(CustomClaims.Permissions, permission));
+        }
 
         var signingCredentals = new SigningCredentials(
             new SymmetricSecurityKey(

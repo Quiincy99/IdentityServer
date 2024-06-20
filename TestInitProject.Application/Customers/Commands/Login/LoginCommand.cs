@@ -27,7 +27,7 @@ internal sealed class LoginCommandHandler : IRequestHandler<LoginCommand, string
             return string.Empty;
         }
 
-        string token = _jwtProvider.Generate(customer);
+        string token = await _jwtProvider.GenerateAsync(customer);
 
         return token;
     }
