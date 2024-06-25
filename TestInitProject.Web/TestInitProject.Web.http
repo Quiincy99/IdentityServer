@@ -23,8 +23,7 @@ Content-Type: application/json
 ###
 GET {{TestInitProject_Web_HostAddress}}/Customer?pageNumber=1&pageSize=10
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NmZhNThiYi00NTVmLTQ5NjgtYjYxMS00NzFkZTdhMWYzMmEiLCJlbWFpbCI6InRlc3QxMkBtYWlsaW5hdG9yLmNvbSIsInBlcm1pc3Npb25zIjpbIlJlYWRDdXN0b21lciIsIkNyZWF0ZUN1c3RvbWVyIl0sImV4cCI6MTcxODcxMTU2MSwiaXNzIjoiTGFtRHVvbmciLCJhdWQiOiJnYSJ9.w2LMtURkbEkICckcYsxzaMWAYhBmDW7HX7WcHx1FcyQ
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3MWI5NTg0Ni02ZGJhLTRlY2MtYjVjOS01ZmJkZWFkNDhkNjYiLCJlbWFpbCI6InRlc3QxNkBtYWlsaW5hdG9yLmNvbSIsInBlcm1pc3Npb25zIjpbIlJlYWRDdXN0b21lciIsIkNyZWF0ZUN1c3RvbWVyIl0sImV4cCI6MTcxOTIyMjAyNSwiaXNzIjoiTGFtRHVvbmciLCJhdWQiOiJnYSJ9.h2Gfrq7w6MgnZsGUDXNzrmqb5qWkIMFzLArgEdJFWa8
 
 ###
 POST {{TestInitProject_Web_HostAddress}}/Customer/Login
@@ -32,6 +31,6 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "Email": "test13@mailinator.com"
+    "Email": "test16@mailinator.com"
 }
 

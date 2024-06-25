@@ -6,7 +6,7 @@ using TestInitProject.Infrastructure;
 
 namespace TestInitProject.Web;
 
-public class JwtBearerOptionsSetup : IConfigureNamedOptions<JwtBearerOptions>
+public class JwtBearerOptionsSetup : IConfigureOptions<JwtBearerOptions>
 {
     private readonly JwtOptions _jwtOptions;
     public JwtBearerOptionsSetup(IOptions<JwtOptions> jwtOptions)
@@ -15,20 +15,6 @@ public class JwtBearerOptionsSetup : IConfigureNamedOptions<JwtBearerOptions>
     }
 
     public void Configure(JwtBearerOptions options)
-    {
-        options.TokenValidationParameters = new()
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = _jwtOptions.Issuer,
-            ValidAudience = _jwtOptions.Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SecretKey))
-        };
-    }
-
-    public void Configure(string? name, JwtBearerOptions options)
     {
         options.TokenValidationParameters = new()
         {
