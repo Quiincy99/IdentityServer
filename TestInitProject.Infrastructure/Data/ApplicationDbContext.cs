@@ -19,7 +19,7 @@ internal class ApplicationDbContext : DbContext
         _serviceProvider = serviceProvider;
     }
 
-    public DbSet<Customer> Customers => Set<Customer>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

@@ -2,5 +2,5 @@
 
 public interface IPermissionService
 {
-    Task<HashSet<string>> GetPermissionAsync(Guid customerId);
+    Task<HashSet<string>> GetPermissionAsync(Guid userId);
 }

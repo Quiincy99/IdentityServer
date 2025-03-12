@@ -18,15 +18,15 @@ internal sealed class JwtProvider : IJwtProvider
         _jwtOptions = options.Value;
         _permissionService = permissionService;
     }
-    public async Task<string> GenerateAsync(Customer customer)
+    public async Task<string> GenerateAsync(User user)
     {
         var claims = new List<Claim> {
-            new Claim(JwtRegisteredClaimNames.Sub, customer.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, customer.Email)
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email)
         };
 
         var permissions = await _permissionService
-            .GetPermissionAsync(customer.Id);
+            .GetPermissionAsync(user.Id);
 
         foreach (var permission in permissions)
         {

@@ -18,9 +18,9 @@ public class PermissionAuthorizationHandler
         AuthorizationHandlerContext context, 
         PermissionRequirement requirement)
     {
-        // string? customerId = context.User.Claims.FirstOrDefault(x => x.Type is ClaimTypes.NameIdentifier)?.Value;
+        // string? userId = context.User.Claims.FirstOrDefault(x => x.Type is ClaimTypes.NameIdentifier)?.Value;
     
-        // if (!Guid.TryParse(customerId, out Guid parsedId))
+        // if (!Guid.TryParse(userId, out Guid parsedId))
         // {
         //     return;
         // } 

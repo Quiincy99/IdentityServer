@@ -15,8 +15,8 @@ internal sealed class RolePermissionConfiguration : IEntityTypeConfiguration<Rol
         builder.HasKey(x => new { x.RoleId, x.PermissionId});
 
         builder.HasData(
-            Create(Role.Registered, Permissions.ReadCustomer),
-            Create(Role.Registered, Permissions.CreateCustomer)
+            Create(Role.Registered, Permissions.ReadUser),
+            Create(Role.Registered, Permissions.CreateUser)
         );
     }
 

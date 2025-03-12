@@ -15,7 +15,7 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
 
         builder.Property(x => x.Name).HasMaxLength(50);
 
-        builder.HasMany(x => x.Customers)
+        builder.HasMany(x => x.Users)
             .WithOne(x => x.Role);
 
         builder.HasMany(x => x.Permissions)

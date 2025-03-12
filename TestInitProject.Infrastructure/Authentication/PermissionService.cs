@@ -13,17 +13,17 @@ internal class PermissionService : IPermissionService
     {
         _context = context;
     }
-    public async Task<HashSet<string>> GetPermissionAsync(Guid customerId)
+    public async Task<HashSet<string>> GetPermissionAsync(Guid userId)
     {
-        var role = await _context.Set<Customer>()
+        var role = await _context.Set<User>()
             .Include(x => x.Role)
             .ThenInclude(x => x.Permissions)
-            .Where(x => x.Id == customerId)
+            .Where(x => x.Id == userId)
             .Select(x => x.Role)
             .FirstAsync();
 
-        return role.Permissions is null ? 
-            new HashSet<string>() : 
+        return role.Permissions is null ?
+            new HashSet<string>() :
             role.Permissions.Select(x => x.Name).ToHashSet();
     }
 }

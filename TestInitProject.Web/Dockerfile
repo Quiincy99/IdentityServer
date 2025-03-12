@@ -19,11 +19,14 @@ RUN dotnet restore "TestInitProject.Infrastructure/TestInitProject.Infrastructur
 
 COPY . .
 
-RUN dotnet build "TestInitProject.Web/TestInitProject.Web.csproj" -c $configuration -o /app/build
+RUN dotnet build "TestInitProject.Web/TestInitProject.Web.csproj" -c "$configuration" -o /app/build
 
 FROM build AS publish
 ARG configuration=Release
-RUN dotnet publish "TestInitProject.Web/TestInitProject.Web.csproj" -c $configuration -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "TestInitProject.Web/TestInitProject.Web.csproj" \
+    -c "$configuration" \ 
+    -o /app/publish \
+    /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

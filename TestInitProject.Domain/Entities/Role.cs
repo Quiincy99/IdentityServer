@@ -12,5 +12,5 @@ public sealed class Role : SmartEnum<Role>
     }
 
     public ICollection<Permission>? Permissions { get; set; }
-    public ICollection<Customer>? Customers { get; set; }
+    public ICollection<User>? Users { get; set; }
 }

@@ -22,7 +22,7 @@ public static class DependencyInjection
         // services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         services.AddScoped<IJwtProvider, JwtProvider>();
 

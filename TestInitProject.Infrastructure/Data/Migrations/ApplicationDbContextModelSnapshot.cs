@@ -22,7 +22,65 @@ namespace TestInitProject.Infrastructure.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("TestInitProject.Domain.Entities.Customer", b =>
+            modelBuilder.Entity("TestInitProject.Domain.Entities.Permission", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Permission", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "ReadUser"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "CreateUser"
+                        });
+                });
+
+            modelBuilder.Entity("TestInitProject.Domain.Entities.Role", b =>
+                {
+                    b.Property<int>("Value")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Value"));
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Value");
+
+                    b.ToTable("Role", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Value = 2,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Value = 1,
+                            Name = "Registered"
+                        });
+                });
+
+            modelBuilder.Entity("TestInitProject.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,65 +118,7 @@ namespace TestInitProject.Infrastructure.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Customer", (string)null);
-                });
-
-            modelBuilder.Entity("TestInitProject.Domain.Entities.Permission", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Permission", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "ReadCustomer"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "CreateCustomer"
-                        });
-                });
-
-            modelBuilder.Entity("TestInitProject.Domain.Entities.Role", b =>
-                {
-                    b.Property<int>("Value")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Value"));
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Value");
-
-                    b.ToTable("Role", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Value = 2,
-                            Name = "Admin"
-                        },
-                        new
-                        {
-                            Value = 1,
-                            Name = "Registered"
-                        });
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("TestInitProject.Domain.RolePermission", b =>
@@ -148,10 +148,10 @@ namespace TestInitProject.Infrastructure.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("TestInitProject.Domain.Entities.Customer", b =>
+            modelBuilder.Entity("TestInitProject.Domain.Entities.User", b =>
                 {
                     b.HasOne("TestInitProject.Domain.Entities.Role", "Role")
-                        .WithMany("Customers")
+                        .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -176,7 +176,7 @@ namespace TestInitProject.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("TestInitProject.Domain.Entities.Role", b =>
                 {
-                    b.Navigation("Customers");
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }
