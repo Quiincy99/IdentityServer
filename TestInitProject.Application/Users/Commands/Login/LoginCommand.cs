@@ -2,12 +2,14 @@
 
 namespace TestInitProject.Application;
 
-public class LoginCommand(string Email) : IRequest<string>
+public class LoginCommand(string email, string password) : IRequest<string>
 {
-    public string Email { get; set; } = Email;
+
+    public string Email { get; set; } = email;
+    public string Password { get; set; } = password;
 };
 
-internal sealed class LoginCommandHandler : IRequestHandler<LoginCommand, string>
+public sealed class LoginCommandHandler : IRequestHandler<LoginCommand, string>
 {
     private readonly IUserRepository _UserRepository;
     private readonly IJwtProvider _jwtProvider;
@@ -22,7 +24,7 @@ internal sealed class LoginCommandHandler : IRequestHandler<LoginCommand, string
     {
         var user = await _UserRepository.GetUserByEmailAsync(request.Email);
 
-        if (user is null)
+        if (user is null || BCrypt.Net.BCrypt.Verify(request.Password, user.HashedPassword))
         {
             return string.Empty;
         }

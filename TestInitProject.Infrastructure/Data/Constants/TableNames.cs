@@ -1,6 +1,6 @@
 ﻿namespace TestInitProject.Infrastructure;
 
-public class TableNames
+public static class TableNames
 {
     public static readonly string User = "User";
     public static readonly string Role = "Role";

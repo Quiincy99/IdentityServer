@@ -1,6 +1,6 @@
 # Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
 
-version: '3.4'
+version: "3.4"
 
 services:
   postgres:
@@ -25,10 +25,10 @@ services:
     ports:
       - 5164:5164
     depends_on:
-        - postgres
+      - postgres
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5431;Database=TestInitProject;Username=lam.duong;Password=1;
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=TestInitProject;Username=lam.duong;Password=1;
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
 

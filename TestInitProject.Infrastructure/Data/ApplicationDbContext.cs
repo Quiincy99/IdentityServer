@@ -25,6 +25,8 @@ internal class ApplicationDbContext : DbContext
     {
         var interceptors = _serviceProvider.GetServices<ISaveChangesInterceptor>();
 
+        optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
         optionsBuilder.AddInterceptors(interceptors);
 
         optionsBuilder.UseNpgsql(_configuration.GetConnectionString("DefaultConnection"));

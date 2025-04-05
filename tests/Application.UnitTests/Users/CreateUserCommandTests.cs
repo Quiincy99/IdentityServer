@@ -32,10 +32,11 @@ public class CreateUserCommandTests
         CreateUserCommand command = new()
         {
             Name = "test1",
-            Email = "test1@mailinator.com"
+            Email = "test1@mailinator.com",
+            Password = "123456"
         };
 
-        User entity = new User(Guid.NewGuid()).Create(command.Name, command.Email);
+        User entity = new User(Guid.NewGuid()).Create(command.Name, command.Email, command.Password);
 
         _mockUserRepository.Setup(m => m.Add(entity));
         _mockUnitOfWork.Setup(m => m.SaveChangesAsync(default));
@@ -49,6 +50,8 @@ public class CreateUserCommandTests
         Assert.That(result, Is.EqualTo(1));
     }
 
+
+
     [Test]
     public async Task CreateUser_Should_Create_One_Domain_Event()
     {
@@ -56,10 +59,11 @@ public class CreateUserCommandTests
         CreateUserCommand command = new()
         {
             Name = "test1",
-            Email = "test1@mailinator.com"
+            Email = "test1@mailinator.com",
+            Password = "123456"
         };
 
-        User entity = new User(Guid.NewGuid()).Create(command.Name, command.Email);
+        User entity = new User(Guid.NewGuid()).Create(command.Name, command.Email, command.Password);
 
         _mockUserRepository.Setup(m => m.Add(entity));
         _mockUnitOfWork.Setup(m => m.SaveChangesAsync(default));

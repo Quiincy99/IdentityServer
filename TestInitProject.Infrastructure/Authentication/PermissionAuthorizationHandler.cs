@@ -14,34 +14,27 @@ public class PermissionAuthorizationHandler
     {
         _serviceScopeFactory = serviceScopeFactory;
     }
-    protected override Task HandleRequirementAsync(
-        AuthorizationHandlerContext context, 
+    protected override async Task HandleRequirementAsync(
+        AuthorizationHandlerContext context,
         PermissionRequirement requirement)
     {
-        // string? userId = context.User.Claims.FirstOrDefault(x => x.Type is ClaimTypes.NameIdentifier)?.Value;
-    
-        // if (!Guid.TryParse(userId, out Guid parsedId))
-        // {
-        //     return;
-        // } 
+        string? userId = context.User.Claims.FirstOrDefault(x => x.Type is ClaimTypes.NameIdentifier)?.Value;
 
-        // using IServiceScope scope = _serviceScopeFactory.CreateScope();
+        if (!Guid.TryParse(userId, out Guid parsedId))
+        {
+            return;
+        }
 
-        // IPermissionService permissionService = scope.ServiceProvider.GetRequiredService<IPermissionService>();
+        using IServiceScope scope = _serviceScopeFactory.CreateScope();
 
-        // HashSet<string> permissions = await permissionService
-        //     .GetPermissionAsync(parsedId);
+        IPermissionService permissionService = scope.ServiceProvider.GetRequiredService<IPermissionService>();
 
-        HashSet<string> permissions = context.User.Claims
-            .Where(x => x.Type == CustomClaims.Permissions)
-            .Select(x => x.Value)
-            .ToHashSet();
+        HashSet<string> permissions = await permissionService
+            .GetPermissionAsync(parsedId);
 
         if (permissions.Contains(requirement.Permission))
         {
             context.Succeed(requirement);
         }
-
-        return Task.CompletedTask;
     }
 }

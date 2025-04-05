@@ -8,6 +8,7 @@ public class CreateUserCommand : IRequest<int>
 {
     public string Email { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
 }
 
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
@@ -24,7 +25,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
 
     public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        var entity = new User(Guid.NewGuid()).Create(request.Email!, request.Name!);
+        var entity = new User(Guid.NewGuid()).Create(request.Email!, request.Name!, request.Password!);
 
         entity.AddDomainEvent(new UserCreatedEvent(entity));
 
