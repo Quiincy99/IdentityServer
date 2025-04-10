@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using TestInitProject.Application.Common.Exceptions;
 
 namespace TestInitProject.Application;
 
@@ -24,9 +26,9 @@ public sealed class LoginCommandHandler : IRequestHandler<LoginCommand, string>
     {
         var user = await _UserRepository.GetUserByEmailAsync(request.Email);
 
-        if (user is null || BCrypt.Net.BCrypt.Verify(request.Password, user.HashedPassword))
+        if (user is null || !BCrypt.Net.BCrypt.Verify(request.Password, user.HashedPassword))
         {
-            return string.Empty;
+            throw new UnauthorizationException();
         }
 
         string token = await _jwtProvider.GenerateAsync(user);

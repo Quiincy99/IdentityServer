@@ -1,6 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using MediatR;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Moq;
 using TestInitProject.Application;
+using TestInitProject.Application.Common.Behaviours;
+using TestInitProject.Application.Common.Exceptions;
 using TestInitProject.Application.Users.Commands.CreateUser;
 using TestInitProject.Domain.Entities;
 using TestInitProject.Domain.Events;
@@ -75,5 +80,31 @@ public class CreateUserCommandTests
         _mockUserRepository.Verify(m => m.Add(It.Is<User>(c => c.Name == "test1" && c.Email == "test1@mailinator.com")));
         _mockUserRepository.Verify(m => m.Add(It.Is<User>(c => c.DomainEvents.Count == 1 && c.DomainEvents.FirstOrDefault() is UserCreatedEvent)), Times.Once);
         Assert.That(result, Is.EqualTo(1));
+    }
+
+    [Test]
+    public void ValidationBehaviour_InvalidRequest_ShouldThrowValidationException()
+    {
+        // Arrange
+        CreateUserCommand command = new()
+        {
+            Email = "invalidemail",
+        };
+
+        var validatorMock = new Mock<IValidator<CreateUserCommand>>();
+        validatorMock.Setup(v => v.ValidateAsync(It.IsAny<ValidationContext<CreateUserCommand>>(), default))
+            .ReturnsAsync(new ValidationResult(new List<ValidationFailure>
+            {
+                new ValidationFailure("Email", "Invalid email format.")
+            }));
+
+        var validators = new List<IValidator<CreateUserCommand>> { validatorMock.Object };
+
+        var behavior = new ValidationBehavior<CreateUserCommand, string>(validators);
+
+        RequestHandlerDelegate<string> next = () => { return Task.FromResult(string.Empty); };
+
+        // Act & Assert
+        Assert.ThrowsAsync<TestInitProject.Application.Common.Exceptions.ValidationException>(() => behavior.Handle(command, next, default));
     }
 }

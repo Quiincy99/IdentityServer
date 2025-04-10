@@ -27,8 +27,7 @@ public class LoginUserCommandTests
     public async Task Login_WithValidCredentials_ShouldReturnToken()
     {
         // Arrange
-        var hashedPassword = BCrypt.Net.BCrypt.HashPassword("123456");
-        User user = new User(Guid.NewGuid()).Create("test1@mailinator.com", "test", hashedPassword);
+        User user = new User(Guid.NewGuid()).Create("test1@mailinator.com", "test", "123456");
         LoginCommand command = new("test1@mailinator.com", "123456");
 
         _mockIJwtProvider.Setup(m => m.GenerateAsync(user)).Returns(Task.FromResult("token"));
@@ -43,20 +42,38 @@ public class LoginUserCommandTests
         Assert.That(result, Is.EqualTo("token"));
     }
 
-    // [Test]
-    // public async Task Login_WithInvalidCredentials_ShouldThrowValidationException()
-    // {
-    //     // Arrange
-    //     var user = new User { Id = Guid.NewGuid(), Email = "test1@mailinator.com", Password = "123456" };
-    //     await UsingDbContext(db =>
-    //     {
-    //         db.Users.Add(user);
-    //         db.SaveChanges();
-    //     });
 
-    //     var command = new LoginCommand { Email = "test1@mailinator.com", Password = "wrong" };
+    [Test]
+    public void Login_WithInvalidCredentials_ShouldThrowValidationException()
+    {
+        // Arrange
+        User user = new User(Guid.NewGuid()).Create("test1@mailinator.com", "test", "CorrectPassword");
+        LoginCommand command = new("test1@mailinator.com", "IncorrectPassword");
 
-    //     // Act and Assert
-    //     FluentActions.Invoking(() => SendAsync(command)).Should().Throw<ValidationException>();
-    // }
+        _mockUserRepository.Setup(m => m.GetUserByEmailAsync(command.Email)).Returns(Task.FromResult(user)!);
+
+        // Act / Assert
+        var ex = Assert.ThrowsAsync<UnauthorizationException>(async () =>
+        {
+            await _handler.Handle(command, default);
+        });
+
+        Assert.That(ex.Message, Is.EqualTo("Unauthorized access"));
+    }
+
+    [Test]
+    public void Login_UnfoundCredentials_ShouldThrowValidationException()
+    {
+        // Arrange
+        LoginCommand command = new("test1@mailinator.com", "Password");
+        _mockUserRepository.Setup(m => m.GetUserByEmailAsync(It.IsAny<string>())).ReturnsAsync((User)null!);
+
+        // Act / Assert
+        var ex = Assert.ThrowsAsync<UnauthorizationException>(async () =>
+        {
+            await _handler.Handle(command, default);
+        });
+
+        Assert.That(ex.Message, Is.EqualTo("Unauthorized access"));
+    }
 }

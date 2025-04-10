@@ -1,6 +1,9 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using TestInitProject.Application;
+using TestInitProject.Application.Common.Interfaces.Auth;
 using TestInitProject.Application.Users.Commands.CreateUser;
 using TestInitProject.Application.Users.Queries.GetUsersWithPagination;
 using TestInitProject.Domain.Enums;
@@ -13,15 +16,19 @@ namespace TestInitProject.Web.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IMediator _mediator;
-    public UserController(IMediator mediator)
+    private readonly IUserContext _userContext;
+    public UserController(IMediator mediator, IUserContext userContext)
     {
         _mediator = mediator;
+        _userContext = userContext;
     }
 
     [HttpGet("/{id}")]
     [ProducesResponseType<Guid>(200)]
+    [Authorize]
     public IActionResult GetUserById(Guid id)
     {
+        Console.WriteLine("Email: " + _userContext.Email);
         return Ok(id);
     }
 
@@ -45,9 +52,15 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("Login")]
+    [AllowAnonymous]
     public async Task<IActionResult> LoginMember([FromBody] LoginCommand command)
     {
         string token = await _mediator.Send(command);
+
+        if (token.IsNullOrEmpty())
+        {
+            return Unauthorized("Unauthorized request");
+        }
 
         return Ok(token);
     }
