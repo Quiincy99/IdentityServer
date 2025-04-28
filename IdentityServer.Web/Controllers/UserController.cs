@@ -12,7 +12,7 @@ using IdentityServer.Infrastructure.Authentication;
 namespace IdentityServer.Web.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class UserController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -23,7 +23,7 @@ public class UserController : ControllerBase
         _userContext = userContext;
     }
 
-    [HttpGet("/{id}")]
+    [HttpGet("{id}")]
     [ProducesResponseType<Guid>(200)]
     [Authorize]
     public IActionResult GetUserById(Guid id)

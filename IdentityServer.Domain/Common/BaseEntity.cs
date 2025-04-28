@@ -11,7 +11,7 @@ public abstract class BaseEntity<T>
     [NotMapped]
     public IReadOnlyCollection<BaseEvent> DomainEvents => _domainEvents.AsReadOnly();
 
-    public BaseEntity(T id)
+    protected BaseEntity(T id)
     {
         Id = id;
     }

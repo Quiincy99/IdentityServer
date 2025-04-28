@@ -8,7 +8,7 @@ public class UserDto
     public Guid Id { get; init; }
     public string? Name { get; init; }
     public string? Email { get; init; }
-    private class Mapping : Profile
+    private sealed class Mapping : Profile
     {
         public Mapping()
         {

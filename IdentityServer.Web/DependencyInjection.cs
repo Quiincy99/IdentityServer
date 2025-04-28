@@ -18,7 +18,6 @@ public static class DependencyInjection
         services.AddHttpContextAccessor();
         services.AddScoped<IUserContext, CurrentUser>();
 
-
         services.AddExceptionHandler<CustomExceptionHandler>();
 
         services.AddEndpointsApiExplorer();
