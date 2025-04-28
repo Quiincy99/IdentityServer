@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TestInitProject.Application\TestInitProject.Application.csproj" />
-    <ProjectReference Include="..\..\TestInitProject.Infrastructure\TestInitProject.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\IdentityServer.Application\IdentityServer.Application.csproj" />
+    <ProjectReference Include="..\..\IdentityServer.Infrastructure\IdentityServer.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

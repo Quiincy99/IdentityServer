@@ -9,17 +9,17 @@ services:
     environment:
       POSTGRES_USER: lam.duong
       POSTGRES_PASSWORD: 1
-      POSTGRES_DB: TestInitProject
+      POSTGRES_DB: IdentityServer
     ports:
       - "5432:5432"
     volumes:
       - postgres_debug_data:/var/lib/postgresql/data
 
-  testinitprojectweb:
-    image: testinitprojectweb
+  identityserverweb:
+    image: identityserverweb
     build:
       context: .
-      dockerfile: TestInitProject.Web/Dockerfile
+      dockerfile: IdentityServer.Web/Dockerfile
       args:
         - configuration=Debug
     ports:
@@ -28,7 +28,7 @@ services:
       - postgres
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=TestInitProject;Username=lam.duong;Password=1;
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=IdentityServer;Username=lam.duong;Password=1;
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
 

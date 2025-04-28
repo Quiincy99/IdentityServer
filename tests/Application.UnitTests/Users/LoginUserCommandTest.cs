@@ -1,9 +1,9 @@
 using Moq;
 using NUnit.Framework;
 using System.Threading.Tasks;
-using TestInitProject.Application;
-using TestInitProject.Application.Common.Exceptions;
-using TestInitProject.Domain.Entities;
+using IdentityServer.Application;
+using IdentityServer.Application.Common.Exceptions;
+using IdentityServer.Domain.Entities;
 
 namespace Application.UnitTests;
 

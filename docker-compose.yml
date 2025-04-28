@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   postgres:
@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: lam.duong
       POSTGRES_PASSWORD: 1
-      POSTGRES_DB: TestInitProject
+      POSTGRES_DB: IdentityServer
     ports:
       - "5432:5432"
     volumes:
@@ -16,13 +16,13 @@ services:
   dotnet_app:
     build:
       context: .
-      dockerfile: TestInitProject.Web/Dockerfile
+      dockerfile: IdentityServer.Web/Dockerfile
     ports:
       - "5164:5164"
     depends_on:
       - postgres
     environment:
-      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=TestInitProject;Username=lam.duong;Password=1;
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=IdentityServer;Username=lam.duong;Password=1;
 
 volumes:
   postgres_data:

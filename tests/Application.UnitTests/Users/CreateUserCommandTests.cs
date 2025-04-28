@@ -3,12 +3,12 @@ using FluentValidation.Results;
 using MediatR;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Moq;
-using TestInitProject.Application;
-using TestInitProject.Application.Common.Behaviours;
-using TestInitProject.Application.Common.Exceptions;
-using TestInitProject.Application.Users.Commands.CreateUser;
-using TestInitProject.Domain.Entities;
-using TestInitProject.Domain.Events;
+using IdentityServer.Application;
+using IdentityServer.Application.Common.Behaviours;
+using IdentityServer.Application.Common.Exceptions;
+using IdentityServer.Application.Users.Commands.CreateUser;
+using IdentityServer.Domain.Entities;
+using IdentityServer.Domain.Events;
 
 namespace Application.UnitTests;
 
@@ -105,6 +105,6 @@ public class CreateUserCommandTests
         RequestHandlerDelegate<string> next = () => { return Task.FromResult(string.Empty); };
 
         // Act & Assert
-        Assert.ThrowsAsync<TestInitProject.Application.Common.Exceptions.ValidationException>(() => behavior.Handle(command, next, default));
+        Assert.ThrowsAsync<IdentityServer.Application.Common.Exceptions.ValidationException>(() => behavior.Handle(command, next, default));
     }
 }
