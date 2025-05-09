@@ -11,11 +11,11 @@ namespace IdentityServer.Infrastructure;
 
 internal sealed class JwtProvider : IJwtProvider
 {
-    private readonly JwtOptions _jwtOptions;
+    private readonly JwtSettings _jwtSettings;
     private readonly IPermissionService _permissionService;
-    public JwtProvider(IOptions<JwtOptions> options, IPermissionService permissionService)
+    public JwtProvider(IOptions<JwtSettings> options, IPermissionService permissionService)
     {
-        _jwtOptions = options.Value;
+        _jwtSettings = options.Value;
         _permissionService = permissionService;
     }
     public async Task<string> GenerateAsync(User user)
@@ -35,14 +35,14 @@ internal sealed class JwtProvider : IJwtProvider
 
         var signingCredentals = new SigningCredentials(
             new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(_jwtOptions.SecretKey)
+                Encoding.UTF8.GetBytes(_jwtSettings.SecretKey)
             ),
             SecurityAlgorithms.HmacSha256
         );
 
         var token = new JwtSecurityToken(
-            _jwtOptions.Issuer,
-            _jwtOptions.Audience,
+            _jwtSettings.Issuer,
+            _jwtSettings.Audience,
             claims,
             null,
             DateTime.UtcNow.AddHours(1),

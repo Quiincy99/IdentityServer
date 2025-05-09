@@ -8,8 +8,8 @@ namespace IdentityServer.Web;
 
 public class JwtBearerOptionsSetup : IConfigureOptions<JwtBearerOptions>
 {
-    private readonly JwtOptions _jwtOptions;
-    public JwtBearerOptionsSetup(IOptions<JwtOptions> jwtOptions)
+    private readonly JwtSettings _jwtOptions;
+    public JwtBearerOptionsSetup(IOptions<JwtSettings> jwtOptions)
     {
         _jwtOptions = jwtOptions.Value;
     }

@@ -6,4 +6,5 @@ public static class TableNames
     public static readonly string Role = "Role";
     public static readonly string Permission = "Permission";
     public static readonly string RolePermission = "RolePermission";
+    public static readonly string PasswordResetToken = "PasswordResetToken";
 }

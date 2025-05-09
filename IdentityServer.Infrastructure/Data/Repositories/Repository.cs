@@ -10,7 +10,7 @@ namespace IdentityServer.Infrastructure;
 internal abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity<Guid>
 {
     protected readonly ApplicationDbContext DbContext;
-    public Repository(ApplicationDbContext context)
+    protected Repository(ApplicationDbContext context)
     {
         DbContext = context;
     }

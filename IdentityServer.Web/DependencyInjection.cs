@@ -47,9 +47,9 @@ public static class DependencyInjection
         // Used to configure when AddJwtBearer is called but doesn't work right now
         // services.ConfigureOptions<JwtBearerOptionsSetup>();
 
-        JwtOptions jwtOptions = configuration
-            .GetRequiredSection(JwtOptions.SectionName)
-            .Get<JwtOptions>()!;
+        JwtSettings jwtSettings = configuration
+            .GetRequiredSection(JwtSettings.SectionName)
+            .Get<JwtSettings>()!;
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -60,9 +60,9 @@ public static class DependencyInjection
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = jwtOptions.Issuer,
-                    ValidAudience = jwtOptions.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.SecretKey))
+                    ValidIssuer = jwtSettings.Issuer,
+                    ValidAudience = jwtSettings.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
                 };
             });
 

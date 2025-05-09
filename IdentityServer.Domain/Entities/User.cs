@@ -14,6 +14,7 @@ public class User : BaseAuditableEntity<Guid>
     public string HashedPassword { get; private set; } = string.Empty;
     public Role Role { get; private set; } = null!;
     public int RoleId { get; private set; } = Role.Registered.Value;
+    public IList<PasswordResetToken>? PasswordResetTokens { get; private set; }
 
     public User Create(string email, string name, string password)
     {
@@ -22,6 +23,22 @@ public class User : BaseAuditableEntity<Guid>
         this.HashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
 
         this.RoleId = Role.Registered.Value;
+
+        return this;
+    }
+
+    public User UpdatePassword(string newPasswordHash)
+    {
+        if (string.IsNullOrEmpty(newPasswordHash))
+            throw new ArgumentException("Password hash cannot be empty");
+        this.HashedPassword = newPasswordHash;
+
+        return this;
+    }
+
+    public User SetRole(Role role)
+    {
+        this.Role = role;
 
         return this;
     }

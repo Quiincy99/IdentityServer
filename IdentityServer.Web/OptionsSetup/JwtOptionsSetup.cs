@@ -3,7 +3,7 @@ using IdentityServer.Infrastructure;
 
 namespace IdentityServer.Web;
 
-public class JwtOptionsSetup : IConfigureOptions<JwtOptions>
+public class JwtOptionsSetup : IConfigureOptions<JwtSettings>
 {
     private readonly string SectionName = "Jwt";
     private readonly IConfiguration _configuration;
@@ -11,7 +11,7 @@ public class JwtOptionsSetup : IConfigureOptions<JwtOptions>
     {
         _configuration = configuration;
     }
-    public void Configure(JwtOptions options)
+    public void Configure(JwtSettings options)
     {
         _configuration.GetSection(SectionName).Bind(options);
     }

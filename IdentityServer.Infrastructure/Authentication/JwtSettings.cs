@@ -1,6 +1,6 @@
 ﻿namespace IdentityServer.Infrastructure;
 
-public class JwtOptions
+public class JwtSettings
 {
     public static readonly string SectionName = "Jwt";
     public string Issuer { get; set; } = string.Empty;
